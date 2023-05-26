@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Simple Form with AJAX</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  </head>
+  <body>
+    <form>
+        <label>Name</label>
+        <input id="name">
+        <br>
+        <label>Roll No.</label>
+        <input id="rollno">
+        <br>
+        <label>Address</label>
+        <input id="address">
+        <br>
+        <input type="submit" value="Submit" onclick="submitForm()">
+    </form>
+    <script>
+      function submitForm() {
+        var name = document.getElementById("name").value;
+        var rollno = document.getElementById("rollno").value;
+        var address = document.getElementById("address").value;
+
+        var xhr = new XMLHttpRequest();
+        xhr.onreadystatechange = () => {
+            localStorage.setItem("name", name);
+            localStorage.setItem("rollno", rollno);
+            localStorage.setItem("address", address);
+          }
+        xhr.open("POST", "http://127.0.0.1:5500/index.html", true);
+        xhr.send();
+      }
+    </script>
+  </body>
+</html>
